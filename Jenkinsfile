@@ -41,7 +41,7 @@ node{
                     echo "echo Deploying to ${BRANCH_NAME}..."
                     withEnv( ["PATH+MAVEN=${tool mvn_version}/bin"] ) {
                         echo "${tool mvn_version}"
-                        bat "mvn clean deploy -Denvironment=SIT-Dapplication=${application}-sit -DmuleDeploy"
+                        bat "mvn clean deploy -Denvironment=SIT -Dapplication=${application}-sit -DmuleDeploy"
                     }
                 }
                 else if("${BRANCH_NAME}" == 'master'){
