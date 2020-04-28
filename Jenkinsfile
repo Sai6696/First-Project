@@ -22,7 +22,6 @@ node{
                  bat "mvn clean test"
       }
     stage('Deploy'){
-             if (fileExists("${projectName}")) {
                  if(${BRANCH_NAME} == 'develop'){
                     echo "echo Deploying to ${BRANCH_NAME}..."
                     withEnv( ["PATH+MAVEN=${tool mvn_version}/bin"] ) {
@@ -63,6 +62,6 @@ node{
                         bat "mvn clean deploy -Denvironment='PROD' -DmuleDeploy"
                     }
                 }             
-            }
+            
     }
 }
