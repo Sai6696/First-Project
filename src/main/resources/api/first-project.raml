@@ -1,0 +1,53 @@
+#%RAML 1.0
+title: First-Project
+description: My First Complete Test Project
+version: v1
+baseUri: https://anypoint.mulesoft.com/mocking/api/v1/links/d2ac5c6b-3760-469f-91aa-2481b29a4314/{version} # baseUri: https://firstproject.com/{version}
+securitySchemes:
+  Basic:
+    type: Basic Authentication 
+securedBy: [Basic]
+protocols: 
+  - HTTPS
+/test:
+  get:
+    description: To retrieve data
+    responses:
+      200:
+        body:
+          application/json:
+             example: !include Fragments/200.raml
+      400:
+        body:
+          application/json:
+             example: !include Fragments/400.raml
+      500:
+        body:
+          application/json:
+            example: !include Fragments/500.raml
+             
+/test1:
+  post:
+    description: To add data
+    body:
+      application/json:
+        !include Fragments/dataType.raml        
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include Fragments/200.raml
+      400:
+        body:
+          application/json:
+            example: !include Fragments/400.raml
+      500:
+        body:
+          application/json:
+            example: !include Fragments/500.raml
+                    
+    
+
+        
+
+
