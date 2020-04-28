@@ -26,9 +26,6 @@ node{
                     echo "echo Deploying to ${BRANCH_NAME}..."
                     withEnv( ["PATH+MAVEN=${tool mvn_version}/bin"] ) {
                         echo "${tool mvn_version}"
-                        def pom = readMavenPom file: 'pom.xml'
-                        def versionList = pom.version.replace("-SNAPSHOT", "").tokenize(".")
-						version = "${versionList[0]}.${versionList[1]}.${versionList[2]}"
                         bat "mvn clean deploy -Denvironment='DEV' -DmuleDeploy"
                     }
                 }
