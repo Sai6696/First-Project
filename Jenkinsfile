@@ -1,6 +1,7 @@
 def jobName = JOB_NAME
 def projectName = jobName.split('/')[0]
-def mvn_version = 'Maven'  
+def mvn_version = 'Maven' 
+def application = First-Project 
 node{
     stage('Checkout'){
                  echo  "Build: ${projectName} for branch ${BRANCH_NAME}"
@@ -26,37 +27,28 @@ node{
                     echo "echo Deploying to ${BRANCH_NAME}..."
                     withEnv( ["PATH+MAVEN=${tool mvn_version}/bin"] ) {
                         echo "${tool mvn_version}"
-                        bat "mvn clean deploy -Denvironment=DEV -DmuleDeploy"
+                        bat "mvn clean deploy -Denvironment=DEV -Dapplication="${application}-md"-DmuleDeploy "
                     }
                 }
                 else if("${BRANCH_NAME}" == 'qa'){
                     echo "echo Deploying to ${BRANCH_NAME}..."
                     withEnv( ["PATH+MAVEN=${tool mvn_version}/bin"] ) {
                         echo "${tool mvn_version}"
-                        def pom = readMavenPom file: 'pom.xml'
-                        def versionList = pom.version.replace("-SNAPSHOT", "").tokenize(".")
-						version = "${versionList[0]}.${versionList[1]}.${versionList[2]}"
-                        bat "mvn clean deploy -Denvironment='QA' -DmuleDeploy"
+                        bat "mvn clean deploy -Denvironment='QA' -Dapplication="${application}-qa" -DmuleDeploy"
                     }
                 }
                 else if("${BRANCH_NAME}" == 'sit'){
                     echo "echo Deploying to ${BRANCH_NAME}..."
                     withEnv( ["PATH+MAVEN=${tool mvn_version}/bin"] ) {
                         echo "${tool mvn_version}"
-                        def pom = readMavenPom file: "${projectName}/pom.xml"
-                        def versionList = pom.version.replace("-SNAPSHOT", "").tokenize(".")
-						version = "${versionList[0]}.${versionList[1]}.${versionList[2]}"
-                        bat "mvn clean deploy -Denvironment='SIT' -DmuleDeploy"
+                        bat "mvn clean deploy -Denvironment='SIT'-Dapplication="${application}-sit" -DmuleDeploy"
                     }
                 }
                 else if("${BRANCH_NAME}" == 'master'){
                     echo "echo Deploying to ${BRANCH_NAME}..."
                     withEnv( ["PATH+MAVEN=${tool mvn_version}/bin"] ) {
                         echo "${tool mvn_version}"
-                        def pom = readMavenPom file: "${projectName}/pom.xml"
-                        def versionList = pom.version.replace("-SNAPSHOT", "").tokenize(".")
-						version = "${versionList[0]}.${versionList[1]}.${versionList[2]}"
-                        bat "mvn clean deploy -Denvironment='PROD' -DmuleDeploy"
+                        bat "mvn clean deploy -Denvironment='PROD' -Dapplication="${application}-prod"-DmuleDeploy"
                     }
                 }             
             

@@ -29,7 +29,7 @@
 					   <muleVersion>4.2.2</muleVersion> 		
 					   <username>Jonnala6696</username> 		
 					   <password>Siva@4567</password> 		
-					   <applicationName>First-Project-md</applicationName> 
+					   <applicationName>${application}</applicationName> 
 					   <environment>${environment}</environment>  	
 					   <businessGroup>Speridian</businessGroup> 
 					   <uri>https://anypoint.mulesoft.com/</uri>
