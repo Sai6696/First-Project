@@ -26,8 +26,7 @@ node{
                     echo "echo Deploying to ${BRANCH_NAME}..."
                     withEnv( ["PATH+MAVEN=${tool mvn_version}/bin"] ) {
                         echo "${tool mvn_version}"
-                        def env = DEV
-                        bat "mvn clean deploy -Denvironment= ${env} -DmuleDeploy"
+                        bat "mvn clean deploy -Denvironment=DEV -DmuleDeploy"
                     }
                 }
                 else if("${BRANCH_NAME}" == 'qa'){
