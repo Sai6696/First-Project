@@ -1,7 +1,7 @@
 def jobName = JOB_NAME
 def projectName = jobName.split('/')[0]
 def mvn_version = 'Maven' 
-def application = First-Project 
+def application = 'First-Project'
 node{
     stage('Checkout'){
                  echo  "Build: ${projectName} for branch ${BRANCH_NAME}"
@@ -27,28 +27,28 @@ node{
                     echo "echo Deploying to ${BRANCH_NAME}..."
                     withEnv( ["PATH+MAVEN=${tool mvn_version}/bin"] ) {
                         echo "${tool mvn_version}"
-                        bat "mvn clean deploy -Denvironment=DEV -Dapplication=${application}_md -DmuleDeploy "
+                        bat "mvn clean deploy -Denvironment=DEV -Dapplication=${application} -DmuleDeploy "
                     }
                 }
                 else if("${BRANCH_NAME}" == 'qa'){
                     echo "echo Deploying to ${BRANCH_NAME}..."
                     withEnv( ["PATH+MAVEN=${tool mvn_version}/bin"] ) {
                         echo "${tool mvn_version}"
-                        bat "mvn clean deploy -Denvironment='QA' -Dapplication=${application}_qa -DmuleDeploy"
+                        bat "mvn clean deploy -Denvironment='QA' -Dapplication=${application}-qa -DmuleDeploy"
                     }
                 }
                 else if("${BRANCH_NAME}" == 'sit'){
                     echo "echo Deploying to ${BRANCH_NAME}..."
                     withEnv( ["PATH+MAVEN=${tool mvn_version}/bin"] ) {
                         echo "${tool mvn_version}"
-                        bat "mvn clean deploy -Denvironment='SIT'-Dapplication=${application}_sit -DmuleDeploy"
+                        bat "mvn clean deploy -Denvironment='SIT'-Dapplication=${application} -DmuleDeploy"
                     }
                 }
                 else if("${BRANCH_NAME}" == 'master'){
                     echo "echo Deploying to ${BRANCH_NAME}..."
                     withEnv( ["PATH+MAVEN=${tool mvn_version}/bin"] ) {
                         echo "${tool mvn_version}"
-                        bat "mvn clean deploy -Denvironment='PROD' -Dapplication=${application}_prod -DmuleDeploy"
+                        bat "mvn clean deploy -Denvironment='PROD' -Dapplication=${application} -DmuleDeploy"
                     }
                 }             
             
