@@ -22,7 +22,7 @@ node{
                  bat "mvn clean test"
       }
     stage('Deploy'){
-                 if(${BRANCH_NAME} == 'develop'){
+                 if("${BRANCH_NAME}" == 'develop'){
                     echo "echo Deploying to ${BRANCH_NAME}..."
                     withEnv( ["PATH+MAVEN=${tool mvn_version}/bin"] ) {
                         echo "${tool mvn_version}"
@@ -32,7 +32,7 @@ node{
                         bat "mvn clean deploy -Denvironment='DEV' -DmuleDeploy"
                     }
                 }
-                else if(${BRANCH_NAME} == 'qa'){
+                else if("${BRANCH_NAME}" == 'qa'){
                     echo "echo Deploying to ${BRANCH_NAME}..."
                     withEnv( ["PATH+MAVEN=${tool mvn_version}/bin"] ) {
                         echo "${tool mvn_version}"
@@ -42,7 +42,7 @@ node{
                         bat "mvn clean deploy -Denvironment='QA' -DmuleDeploy"
                     }
                 }
-                else if(${BRANCH_NAME} == 'sit'){
+                else if("${BRANCH_NAME}" == 'sit'){
                     echo "echo Deploying to ${BRANCH_NAME}..."
                     withEnv( ["PATH+MAVEN=${tool mvn_version}/bin"] ) {
                         echo "${tool mvn_version}"
@@ -52,7 +52,7 @@ node{
                         bat "mvn clean deploy -Denvironment='SIT' -DmuleDeploy"
                     }
                 }
-                else if(${BRANCH_NAME} == 'master'){
+                else if("${BRANCH_NAME}" == 'master'){
                     echo "echo Deploying to ${BRANCH_NAME}..."
                     withEnv( ["PATH+MAVEN=${tool mvn_version}/bin"] ) {
                         echo "${tool mvn_version}"
