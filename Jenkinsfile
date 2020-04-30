@@ -27,7 +27,9 @@ node{
                     echo "echo Deploying to ${BRANCH_NAME}..."
                     withEnv( ["PATH+MAVEN=${tool mvn_version}/bin"] ) {
                         echo "${tool mvn_version}"
-                        bat "mvn clean deploy -Denvironment=DEV -Dapplication=${application}-md -DmuleDeploy "
+                        withCredentials([usernamePassword(credentialsId:'Anypoint', usernameVariable: 'anypoint_usr', passwordVariable: 'anypoint_psw')]){
+                        bat "mvn clean deploy -Denvironment=DEV -Dusername=${anypoint_usr} -Dpassword=${anypoint_psw} -Dapplication=${application}-md -DmuleDeploy "
+                        }            
                     }
                 }
                 else if("${BRANCH_NAME}" == 'qa'){

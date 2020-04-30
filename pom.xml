@@ -27,8 +27,8 @@
 				<configuration>
 				<cloudHubDeployment>
 					   <muleVersion>4.2.2</muleVersion> 		
-					   <username>Jonnala6696</username> 		
-					   <password>Siva@4567</password> 		
+					   <username>${username}</username> 		
+					   <password>${password}</password> 		
 					   <applicationName>${application}</applicationName> 
 					   <environment>${environment}</environment>  	
 					   <businessGroup>Speridian</businessGroup> 
